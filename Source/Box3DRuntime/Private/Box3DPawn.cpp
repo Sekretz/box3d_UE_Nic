@@ -163,6 +163,6 @@ bool ABox3DPawn::QueryGrounded(const FVector& Position) const
 	FBox3DHitResult Hit;
 	const FVector End = Position - FVector::UpVector * GroundCheckDistance;
 	return UBox3DQueryLibrary::Box3DCapsuleCast(
-		this, Position, End, CapsuleRadius, CapsuleHalfHeight, Filter, Hit) &&
+		const_cast<ABox3DPawn*>(this), Position, End, CapsuleRadius, CapsuleHalfHeight, Filter, Hit) &&
 		Hit.Actor != this && Hit.Component != Box3DBody && Hit.Normal.Z >= WalkableNormalZ;
 }
